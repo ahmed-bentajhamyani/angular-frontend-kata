@@ -16,7 +16,7 @@ import { addToCart } from "src/app/store/cart.actions";
         MatDialogModule,
     ],
     template: `
-        <article class="flex flex-col justify-start items-center rounded-lg px-5 py-3 shadow">
+        <article class="flex flex-col justify-start items-center bg-white rounded-lg px-5 py-3 shadow">
             <a (click)="openDialog()" class="cursor-pointer">
                 <img src={{product.image}} alt='' class='h-36 mt-3' />
             </a>
@@ -34,7 +34,7 @@ import { addToCart } from "src/app/store/cart.actions";
             </div>
 
             <button mat-raised-button (click)="addToCart(product.id)"
-                class="w-full bg-teal-500 text-white shadow-md mt-3 p-2.5 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-all ease-in-out duration-300">
+                class="w-full bg-primary text-white shadow-md mt-3 p-2.5 rounded-md hover:bg-primary/90 focus:outline-none focus:ring-2  focus:ring-primary/70 transition-all ease-in-out duration-300">
                 Add to cart
             </button>
         </article>
