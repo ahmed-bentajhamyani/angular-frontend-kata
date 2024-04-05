@@ -5,7 +5,7 @@ import { MatSnackBarRef } from "@angular/material/snack-bar";
 @Component({
     selector: 'added-to-cart-snack-bar',
     template: `
-        <span class="flex items-center text-text-primary font-medium text-lg">
+        <span class="flex items-center text-text-primary font-medium text-base">
             <mat-icon aria-hidden="false" aria-label="Example done icon" fontIcon="done" class="text-primary"></mat-icon> Added to cart
         </span>
     `,
