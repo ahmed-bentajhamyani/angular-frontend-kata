@@ -1,9 +1,10 @@
 import { Component, inject } from "@angular/core";
 import { ProductsSkeletonComponent } from "./skeletons/products-skeleton.component";
-import { NgFor, NgIf } from "@angular/common";
+import { CommonModule, NgFor, NgIf } from "@angular/common";
 import { ProductService } from "../services/product.service";
 import { Product } from "../models/product.model";
 import { ProductCardComponent } from "./components/product-card.component";
+import { Observable, combineLatest, filter, map, of } from "rxjs";
 
 @Component({
     selector: 'fk-products',
@@ -13,11 +14,12 @@ import { ProductCardComponent } from "./components/product-card.component";
         NgFor,
         ProductCardComponent,
         ProductsSkeletonComponent,
+        CommonModule
     ],
     template: `
         <div class="mb-16 w-full">
             <div class="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4">
-                <ng-container *ngFor="let product of products">
+                <ng-container *ngFor="let product of (products$ | async)">
                     <fk-product-card [product]="product"></fk-product-card>
                 </ng-container>
             </div>
@@ -26,9 +28,29 @@ import { ProductCardComponent } from "./components/product-card.component";
 })
 export class ProductsComponent {
     private readonly productService = inject(ProductService);
-    products: Product[] = [];
+    products$!: Observable<Product[]>;
 
     ngOnInit() {
-        this.productService.getProducts().subscribe(res => this.products = res)
+        combineLatest([
+            this.productService.searchQuery$,
+            this.productService.getProducts(),
+        ])
+            .pipe(
+                map(([searchQuery, products]) => {
+                    if (!searchQuery || searchQuery.trim() === '') {
+                        return products;
+                    }
+                    return products?.filter(
+                        ({ title, description }) =>
+                            title.toLowerCase().includes(searchQuery) ||
+                            description.toLowerCase().includes(searchQuery)
+                    );
+                })
+            )
+            .subscribe((filteredProducts) => {
+                if (filteredProducts) {
+                    this.products$ = of(filteredProducts);
+                }
+            });
     }
 }
