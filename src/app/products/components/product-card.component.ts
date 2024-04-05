@@ -4,6 +4,8 @@ import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { RouterModule } from "@angular/router";
 import { Product } from "src/app/models/product.model";
 import { ProductDetailsComponent } from "./product-details.component";
+import { Store } from "@ngrx/store";
+import { addToCart } from "src/app/store/cart.actions";
 
 @Component({
     selector: 'fk-product-card',
@@ -31,8 +33,10 @@ import { ProductDetailsComponent } from "./product-details.component";
                 <p class='text-sm w-full mt-1.5 line-clamp-1'>{{product.description}}</p>
             </div>
 
-            <button mat-raised-button mat-dialog-close
-                class="w-full bg-teal-500 text-white shadow-md mt-3 p-2.5 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-all ease-in-out duration-300">Add to cart</button>
+            <button mat-raised-button (click)="addToCart(product.id)"
+                class="w-full bg-teal-500 text-white shadow-md mt-3 p-2.5 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-all ease-in-out duration-300">
+                Add to cart
+            </button>
         </article>
     `
 })
@@ -41,7 +45,7 @@ export class ProductCardComponent {
     product!: Product;
 
     public readonly dialog = inject(MatDialog);
-
+    public readonly store = inject(Store);
 
     openDialog() {
         const dialogRef = this.dialog.open(ProductDetailsComponent, {
@@ -51,5 +55,9 @@ export class ProductCardComponent {
         dialogRef.afterClosed().subscribe(result => {
             console.log(`Dialog result: ${result}`);
         });
+    }
+
+    addToCart(itemId: number) {
+        this.store.dispatch(addToCart({ itemId }));
     }
 }
