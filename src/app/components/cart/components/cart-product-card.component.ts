@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { CurrencyPipe } from "@angular/common";
 import { Component, Input, inject } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { Store } from "@ngrx/store";
@@ -11,7 +11,7 @@ import { addToCart, deleteItemFromCart, removeFromCart } from "src/app/store/car
     standalone: true,
     imports: [
         MatIconModule,
-        CommonModule
+        CurrencyPipe
     ],
     template: `
         <article class="flex justify-start items-center space-x-2 lg:space-x-7 p-4">

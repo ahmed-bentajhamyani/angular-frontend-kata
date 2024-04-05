@@ -1,4 +1,4 @@
-import { CommonModule, NgClass, NgFor } from "@angular/common";
+import { CurrencyPipe, NgClass, NgFor, NgIf } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
@@ -17,10 +17,11 @@ import { deleteAll } from "src/app/store/cart.actions";
     imports: [
         NgClass,
         NgFor,
+        NgIf,
         MatDialogModule,
         MatIconModule,
         CartProductCardComponent,
-        CommonModule
+        CurrencyPipe
     ],
     templateUrl: './cart.component.html'
 })

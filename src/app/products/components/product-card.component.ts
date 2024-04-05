@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { CurrencyPipe } from "@angular/common";
 import { Component, Input, inject } from "@angular/core";
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { RouterModule } from "@angular/router";
@@ -15,7 +15,7 @@ import { AddedToCartSnackBarComponent } from "./snack_bar/added-to-cart-snack-ba
     standalone: true,
     imports: [
         RouterModule,
-        CommonModule,
+        CurrencyPipe,
         MatDialogModule,
         MatIconModule,
         MatSnackBarModule

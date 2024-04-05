@@ -1,4 +1,4 @@
-import { CommonModule, NgClass } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,7 +15,7 @@ import { ProductService } from '../services/product.service';
     imports: [
         MatIconModule,
         NgClass,
-        CommonModule,
+        AsyncPipe,
         MatDialogModule,
     ],
     template: `

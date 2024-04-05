@@ -1,5 +1,5 @@
 import { Component, inject } from "@angular/core";
-import { CommonModule, NgFor, NgIf } from "@angular/common";
+import { AsyncPipe, NgFor } from "@angular/common";
 import { ProductService } from "../services/product.service";
 import { Product } from "../models/product.model";
 import { ProductCardComponent } from "./components/product-card.component";
@@ -9,10 +9,9 @@ import { Observable, combineLatest, map, of } from "rxjs";
     selector: 'fk-products',
     standalone: true,
     imports: [
-        NgIf,
         NgFor,
         ProductCardComponent,
-        CommonModule
+        AsyncPipe
     ],
     template: `
         <div class="mb-16 w-full">
