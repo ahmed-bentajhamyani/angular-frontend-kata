@@ -1,0 +1,39 @@
+<div class="flex justify-between items-center">
+    <h2 mat-dialog-title class="!mb-0">Your cart</h2>
+    <button mat-dialog-close class="hover:opacity-40 mx-3">
+        <mat-icon aria-hidden="false" aria-label="Example close icon" fontIcon="close" class="text-2xl"></mat-icon>
+    </button>
+</div>
+<mat-dialog-content class="mat-typography !min-h-72 md:!w-[500px]">
+    <div class='flex-auto overflow-y-auto h-full text-gray-900'>
+        <!-- header -->
+        <div class="flex justify-between items-center mb-2">
+            <p class='font-medium'>{{cartQuantity}} products</p>
+            <button class="font-medium text-sm hover:opacity-40" (click)="deleteAll()">
+                Delete all
+            </button>
+        </div>
+
+        <div *ngFor="let cartProduct of cartProducts; let i = index">
+            <fk-cart-product-card [product]="getProduct(cartProduct.id)!"
+                [cartProduct]="cartProduct"></fk-cart-product-card>
+        </div>
+        <div *ngIf="cartProducts.length === 0" class="flex items-center justify-center h-72">
+            <p class="font-medium whitespace-nowrap">Your cart is empty.</p>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <div class="flex flex-col items-center justify-end w-full p-4">
+        <div class="flex items-center justify-between w-full mb-2">
+            <span class="font-semibold text-sm">Subtotal</span>
+            <span class="font-semibold text-lg">
+                {{ calculateSubtotal() | currency:'USD':'symbol':'1.2-2' }}
+            </span>
+        </div>
+        <button mat-raised-button
+            class="w-full bg-teal-500 text-white shadow-md mt-3 p-2.5 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-all ease-in-out duration-300">
+            Checkout
+        </button>
+    </div>
+</mat-dialog-actions>
