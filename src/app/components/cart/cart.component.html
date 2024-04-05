@@ -15,7 +15,7 @@
         </div>
 
         <div *ngFor="let cartProduct of cartProducts; let i = index">
-            <fk-cart-product-card [product]="getProduct(cartProduct.id)!"
+            <fk-cart-product-card *ngIf="getProduct(cartProduct.id)" [product]="getProduct(cartProduct.id)!"
                 [cartProduct]="cartProduct"></fk-cart-product-card>
         </div>
         <div *ngIf="cartProducts.length === 0" class="flex items-center justify-center h-72">
