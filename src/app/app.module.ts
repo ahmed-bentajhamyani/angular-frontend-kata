@@ -17,6 +17,7 @@ import { cartReducer } from './store/cart.reducers';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    NavbarComponent,
     ProductsComponent,
     StoreModule.forRoot({ cart: cartReducer })
   ],
