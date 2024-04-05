@@ -97,6 +97,7 @@ export class NavbarComponent {
     }
 
     showSearchBoxOpen() {
+        this.searchQuery.next('');
         this.mobileSearchBoxOpen = !this.mobileSearchBoxOpen;
     }
 }
