@@ -45,16 +45,16 @@ import { ProductService } from '../services/product.service';
                     </div>
                 </div>
 
-                <div class='flex'>
+                <div class='flex items-center [&>button>mat-icon]:!flex [&>button>mat-icon]:!justify-center [&>button>mat-icon]:!items-center [&>button>mat-icon]:!w-10 [&>button>mat-icon]:!h-10'>
                     <button (click)="showSearchBoxOpen()" class="md:hidden">
-                        <mat-icon aria-hidden="false" aria-label="Example search icon" fontIcon="search" class="!w-10 !h-10"></mat-icon>
+                        <mat-icon aria-hidden="false" aria-label="Example search icon" fontIcon="search"></mat-icon>
                     </button>
-                    <div class="">
-                        <div class='absolute top-1 right-5 md:right-10 flex items-center justify-center h-4 w-4 bg-rose-600 rounded-full text-white' [ngClass]="{'hidden': mobileSearchBoxOpen}"> 
+                    <div>
+                        <div class='absolute top-3 right-4 md:right-9 flex items-center justify-center h-4 w-4 bg-rose-600 rounded-full text-white' [ngClass]="{'hidden': mobileSearchBoxOpen}"> 
                             <span class="text-xs">{{cartQuantity$ | async}}</span>
                         </div>
                         <button (click)="openCart()">
-                            <mat-icon aria-hidden="false" aria-label="Example shopping_cart icon" fontIcon="shopping_cart" class="!w-10 !h-10"></mat-icon>
+                            <mat-icon aria-hidden="false" aria-label="Example shopping_cart icon" fontIcon="shopping_cart"></mat-icon>
                         </button>
                     </div>
                 </div>
