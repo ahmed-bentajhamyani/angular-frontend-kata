@@ -34,7 +34,9 @@ import { addToCart } from "src/app/store/cart.actions";
                     <p class='text-sm md:text-base mt-3'>{{product.description}}</p>
                     
                     <button (click)="addToCart(product.id)" mat-raised-button
-                        class="w-full bg-primary text-white shadow-md mt-3 p-2.5 rounded-md hover:bg-primary/90 focus:outline-none focus:ring-2  focus:ring-primary/70 transition-all ease-in-out duration-300">Add to cart</button>
+                        class="flex justify-center items-center gap-1 w-full bg-primary text-white shadow-md mt-3 p-2.5 rounded-md hover:bg-primary/90 focus:outline-none focus:ring-2  focus:ring-primary/70 transition-all ease-in-out duration-300">
+                        <mat-icon aria-hidden="false" aria-label="Example shopping_cart icon" fontIcon="shopping_cart" class="text-white"></mat-icon> Add to cart
+                    </button>
                 </div>
             </div>
         </mat-dialog-content>

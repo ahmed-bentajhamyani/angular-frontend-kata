@@ -6,6 +6,7 @@ import { Product } from "src/app/models/product.model";
 import { ProductDetailsComponent } from "./product-details.component";
 import { Store } from "@ngrx/store";
 import { addToCart } from "src/app/store/cart.actions";
+import { MatIconModule } from "@angular/material/icon";
 
 @Component({
     selector: 'fk-product-card',
@@ -14,6 +15,7 @@ import { addToCart } from "src/app/store/cart.actions";
         RouterModule,
         CommonModule,
         MatDialogModule,
+        MatIconModule
     ],
     template: `
         <article class="flex flex-col justify-start items-center bg-white rounded-lg px-5 py-3 shadow">
@@ -34,8 +36,8 @@ import { addToCart } from "src/app/store/cart.actions";
             </div>
 
             <button mat-raised-button (click)="addToCart(product.id)"
-                class="w-full bg-primary text-white shadow-md mt-3 p-2.5 rounded-md hover:bg-primary/90 focus:outline-none focus:ring-2  focus:ring-primary/70 transition-all ease-in-out duration-300">
-                Add to cart
+                class="flex justify-center items-center gap-0.5 w-full bg-primary text-white shadow-md mt-3 p-2.5 rounded-md hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary/70 transition-all ease-in-out duration-300">
+                <mat-icon aria-hidden="false" aria-label="Example shopping_cart icon" fontIcon="shopping_cart" class="text-white"></mat-icon> Add to cart
             </button>
         </article>
     `
