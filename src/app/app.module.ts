@@ -5,6 +5,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductsComponent } from './products/products.component';
+import { NavbarComponent } from './components/navbar.component';
+import { StoreModule } from '@ngrx/store';
+import { cartReducer } from './store/cart.reducers';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,8 @@ import { ProductsComponent } from './products/products.component';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ProductsComponent
+    ProductsComponent,
+    StoreModule.forRoot({ cart: cartReducer })
   ],
   providers: [],
   bootstrap: [AppComponent]
