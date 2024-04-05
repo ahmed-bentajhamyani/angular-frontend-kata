@@ -1,10 +1,9 @@
 import { Component, inject } from "@angular/core";
-import { ProductsSkeletonComponent } from "./skeletons/products-skeleton.component";
 import { CommonModule, NgFor, NgIf } from "@angular/common";
 import { ProductService } from "../services/product.service";
 import { Product } from "../models/product.model";
 import { ProductCardComponent } from "./components/product-card.component";
-import { Observable, combineLatest, filter, map, of } from "rxjs";
+import { Observable, combineLatest, map, of } from "rxjs";
 
 @Component({
     selector: 'fk-products',
@@ -13,7 +12,6 @@ import { Observable, combineLatest, filter, map, of } from "rxjs";
         NgIf,
         NgFor,
         ProductCardComponent,
-        ProductsSkeletonComponent,
         CommonModule
     ],
     template: `
