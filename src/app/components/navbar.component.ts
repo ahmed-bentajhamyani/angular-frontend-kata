@@ -91,9 +91,7 @@ export class NavbarComponent {
     openCart() {
         const dialogRef = this.dialog.open(CartComponent);
 
-        dialogRef.afterClosed().subscribe(result => {
-            console.log(`Dialog result: ${result}`);
-        });
+        dialogRef.afterClosed().subscribe();
     }
 
     showSearchBoxOpen() {

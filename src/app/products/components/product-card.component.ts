@@ -54,9 +54,7 @@ export class ProductCardComponent {
             data: this.product,
         });
 
-        dialogRef.afterClosed().subscribe(result => {
-            console.log(`Dialog result: ${result}`);
-        });
+        dialogRef.afterClosed().subscribe();
     }
 
     addToCart(itemId: number) {
