@@ -22,7 +22,7 @@ import { AddedToCartSnackBarComponent } from "./snack_bar/added-to-cart-snack-ba
             <mat-icon aria-hidden="false" aria-label="Example close icon" fontIcon="close" class="text-2xl"></mat-icon>
         </button>
         <mat-dialog-content class="mat-typography">
-            <div class="grid grid-rows-2 lg:grid-cols-2 place-items-center gap-x-8 mt-6 text-gray-900">
+            <div class="grid grid-cols-1 lg:grid-cols-2 place-items-center gap-x-8 mt-6 text-gray-900">
                 <img src={{product.image}} alt='' class='h-[300px] md:h-[400px]' />
                 <div class="flex flex-grow flex-col justify-between bg-gray-100 px-5 py-5 w-full rounded-lg">
                     <p class='font-semibold text-teal-500 !mb-0'>{{product.category}}</p>
