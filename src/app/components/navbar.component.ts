@@ -41,7 +41,7 @@ import { ProductService } from '../services/product.service';
                         <button class="w-11 h-11 mr-2" (click)="showSearchBoxOpen()">
                             <mat-icon aria-hidden="false" aria-label="Example arrow_back icon" fontIcon="arrow_back" class="text-2xl"></mat-icon>
                         </button>
-                        <input type="text" class='flex flex-1 bg-transparent w-full focus:outline-none' placeholder='Search products...' />
+                        <input type="text" class='flex flex-1 bg-transparent w-full focus:outline-none' placeholder='Search products...' (keyup)="searchQueryChanged($event)" />
                     </div>
                 </div>
 
