@@ -3,5 +3,11 @@
 @tailwind utilities;
 
 body {
-    @apply container mx-auto px-5 md:px-10 mt-20
+  @apply container mx-auto px-5 md:px-10 mt-20
+}
+
+.mat-mdc-snack-bar-container {
+  &.added-to-cart-snackbar {
+    --mdc-snackbar-container-color: #fff;
+  }
 }

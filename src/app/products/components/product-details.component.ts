@@ -5,6 +5,8 @@ import { Product } from "src/app/models/product.model";
 import { MatIconModule } from '@angular/material/icon';
 import { Store } from "@ngrx/store";
 import { addToCart } from "src/app/store/cart.actions";
+import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
+import { AddedToCartSnackBarComponent } from "./snack_bar/added-to-cart-snack-bar.component";
 
 @Component({
     selector: 'fk-product-details',
@@ -12,7 +14,8 @@ import { addToCart } from "src/app/store/cart.actions";
     imports: [
         MatDialogModule,
         CommonModule,
-        MatIconModule
+        MatIconModule,
+        MatSnackBarModule
     ],
     template: `
         <button mat-dialog-close class="flex justify-end w-full p-2 outline-none">
@@ -43,11 +46,22 @@ import { addToCart } from "src/app/store/cart.actions";
     `
 })
 export class ProductDetailsComponent {
+    public readonly snackBar = inject(MatSnackBar);
     public readonly store = inject(Store);
 
     constructor(@Inject(MAT_DIALOG_DATA) public product: Product) { }
 
+    openSnackBar() {
+        this.snackBar.openFromComponent(AddedToCartSnackBarComponent, {
+            panelClass: ['added-to-cart-snackbar'],
+            horizontalPosition: 'end',
+            verticalPosition: 'bottom',
+            duration: 5000
+        });
+    }
+
     addToCart(itemId: number) {
         this.store.dispatch(addToCart({ itemId }));
+        this.openSnackBar();
     }
 }
