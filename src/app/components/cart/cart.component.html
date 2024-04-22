@@ -14,13 +14,20 @@
             </button>
         </div>
 
-        <div *ngFor="let cartProduct of cartProducts; let i = index">
-            <fk-cart-product-card *ngIf="getProduct(cartProduct.id)" [product]="getProduct(cartProduct.id)!"
-                [cartProduct]="cartProduct"></fk-cart-product-card>
-        </div>
-        <div *ngIf="cartProducts.length === 0" class="flex items-center justify-center h-72">
-            <p class="font-medium whitespace-nowrap">Your cart is empty.</p>
-        </div>
+        <ng-template #empty>
+            <div class="flex items-center justify-center h-72">
+                <p class="whitespace-nowrap">Your cart is empty.</p>
+            </div>
+        </ng-template>
+
+        <ng-template #content>
+            <ng-container *ngFor="let cartProduct of cartProducts; let i = index">
+                <fk-cart-product-card *ngIf="getProduct(cartProduct.id)" [product]="getProduct(cartProduct.id)!"
+                    [cartProduct]="cartProduct"></fk-cart-product-card>
+            </ng-container>
+        </ng-template>
+
+        <ng-container *ngTemplateOutlet="cartProducts.length > 0 ? content : empty"></ng-container>
     </div>
 </mat-dialog-content>
 <mat-dialog-actions>
