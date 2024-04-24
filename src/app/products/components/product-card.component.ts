@@ -35,7 +35,7 @@ import { AddedToCartSnackBarComponent } from "./snack_bar/added-to-cart-snack-ba
                         {{ product.price | currency:'USD':'symbol':'1.2-2' }}
                     </p>
                 </div>
-                <p class='text-sm w-full mt-1.5 line-clamp-1'>{{product.description}}</p>
+                <p class='text-sm w-full mt-1.5 line-clamp-2'>{{product.description}}</p>
             </div>
 
             <button mat-raised-button (click)="addToCart(product.id)"
