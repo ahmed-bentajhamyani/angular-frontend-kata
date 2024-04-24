@@ -4,17 +4,23 @@ import { ProductService } from "../services/product.service";
 import { Product } from "../models/product.model";
 import { ProductCardComponent } from "./components/product-card.component";
 import { Observable, combineLatest, map, of } from "rxjs";
+import { ProductsSkeletonComponent } from "./skeletons/products-skeleton.component";
 
 @Component({
     selector: 'fk-products',
     standalone: true,
     imports: [
+        ProductsSkeletonComponent,
         NgFor,
         NgTemplateOutlet,
         ProductCardComponent,
         AsyncPipe
     ],
     template: `
+        <ng-template #loading>
+            <fk-products-skeleton></fk-products-skeleton>
+        </ng-template>
+
         <ng-template #empty>
             <div class="flex justify-center items-center w-full h-full mt-72 xl:mt-80">
                 <p class="text-xl text-center">No product found</p>
@@ -29,12 +35,14 @@ import { Observable, combineLatest, map, of } from "rxjs";
             </div>
         </ng-template>
 
-        <ng-container *ngTemplateOutlet="(products$ | async)?.length! > 0 ? content : empty"></ng-container>
+        <ng-container *ngTemplateOutlet="isLoading ? loading : (products$ | async)?.length! > 0 ? content : empty"></ng-container>
     `,
 })
 export class ProductsComponent {
     private readonly productService = inject(ProductService);
     products$!: Observable<Product[]>;
+
+    isLoading = true;
 
     ngOnInit() {
         combineLatest([
@@ -57,6 +65,7 @@ export class ProductsComponent {
                 if (filteredProducts) {
                     this.products$ = of(filteredProducts);
                 }
+                this.isLoading = false;
             });
     }
 }
