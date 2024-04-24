@@ -10,18 +10,20 @@ import { CartState } from "src/app/store/cart.reducers";
 import { CartItem } from "src/app/models/cart-item.model";
 import { selectCartProducts, selectCartQuantity } from "src/app/store/cart.selectors";
 import { deleteAll } from "src/app/store/cart.actions";
+import { CartSkeletonComponent } from "./skeletons/cart-skeleton.component";
 
 @Component({
     selector: 'fk-cart',
     standalone: true,
     imports: [
+        CartProductCardComponent,
+        CartSkeletonComponent,
         NgClass,
         NgFor,
         NgIf,
         NgTemplateOutlet,
         MatDialogModule,
         MatIconModule,
-        CartProductCardComponent,
         CurrencyPipe
     ],
     templateUrl: './cart.component.html'
@@ -30,12 +32,18 @@ export class CartComponent {
     private readonly store = inject(Store<CartState>);
     private readonly productService = inject(ProductService);
 
+    isLoading = true;
+    isCalculating = true;
+
     cartProducts!: CartItem[];
     cartQuantity!: number;
     products!: Product[];
 
     ngOnInit() {
-        this.productService.getProducts().subscribe(res => this.products = res)
+        this.productService.getProducts().subscribe(res => {
+            this.products = res;
+            this.isLoading = false;
+        })
         this.store.select(selectCartProducts).subscribe((res) => {
             this.cartProducts = res;
         });
